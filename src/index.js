@@ -37,7 +37,10 @@ app.use(
 );
 
 app.post('/api/v1/save', async (req, res) => {
-  const { reference = createNewReference(), title, url } = req.body;
+  const { reference: userSubmittedReference, title, url } = req.body;
+  const reference = userSubmittedReference
+    ? userSubmittedReference
+    : createNewReference();
 
   try {
     await db.saveLink(reference, { title, url }, req.get('User-Agent'));
