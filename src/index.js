@@ -3,10 +3,17 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const rateLimit = require('express-rate-limit');
 
 const createNewReference = require('./services/uniqueReference');
 const database = require('./services/database');
-const { PORT: APP_PORT, MONGO_DSN, SOURCE_VERSION = 'dev' } = process.env;
+const {
+  PORT: APP_PORT,
+  MONGO_DSN,
+  SOURCE_VERSION = 'dev',
+  RATE_LIMIT_WINDOW_IN_SEC = 60,
+  RATE_LIMIT_NO_REQUESTS = 200,
+} = process.env;
 
 mongoose.connect(MONGO_DSN, {
   useUnifiedTopology: true,
@@ -17,6 +24,17 @@ const db = database();
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(
+  /*
+   * RATE_LIMIT_WINDOW_IN_SEC -> what is the time slot we're measure
+   * RATE_LIMIT_NO_REQUESTS -> how many requests per measured time slot
+   * e.g. 60 / 10 = 10req per 60sec
+   */
+  rateLimit({
+    windowMs: RATE_LIMIT_WINDOW_IN_SEC,
+    max: RATE_LIMIT_NO_REQUESTS,
+  })
+);
 
 app.get('/api/v1/create-reference', (req, res) => {
   res.json({
