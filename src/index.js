@@ -10,7 +10,7 @@ const database = require('./services/database');
 const {
   PORT: APP_PORT,
   MONGO_DSN,
-  SOURCE_VERSION = 'dev',
+  HEROKU_SLUG_COMMIT: SOURCE_VERSION = 'dev',
   RATE_LIMIT_WINDOW_IN_SEC = 60,
   RATE_LIMIT_NO_REQUESTS = 200,
 } = process.env;
