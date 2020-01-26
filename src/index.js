@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -15,6 +16,7 @@ const app = express();
 const db = database();
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/api/v1/create-reference', (req, res) => {
   res.json({
