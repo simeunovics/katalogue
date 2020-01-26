@@ -1,0 +1,43 @@
+{
+  "name": "katalogue",
+  "version": "1.0.0",
+  "description": "Catalogue your links",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production src/index.js",
+    "watch": "NODE_ENV=development nodemon src/index.js",
+    "test": "jest --runInBand --ci ./tests",
+    "tdd": "jest --watch --runInBand ./tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simeunovics/katalogue.git"
+  },
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
+  "keywords": [
+    "katalogue",
+    "bookmark",
+    "links"
+  ],
+  "author": "Simo Simeunovic <simeunovics@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simeunovics/katalogue/issues"
+  },
+  "homepage": "https://github.com/simeunovics/katalogue#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.9",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "mongodb-memory-server": "^6.2.3",
+    "nodemon": "^2.0.2"
+  }
+}
