@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const createNewReference = require('./services/uniqueReference');
 const database = require('./services/database');
-const { PORT: APP_PORT, MONGO_DSN } = process.env;
+const { PORT: APP_PORT, MONGO_DSN, SOURCE_VERSION = 'dev' } = process.env;
 
 mongoose.connect(MONGO_DSN, {
   useUnifiedTopology: true,
@@ -35,6 +35,12 @@ app.post('/api/v1/save', async (req, res) => {
       message: e,
     });
   }
+});
+app.get('/', (req, res) => {
+  res.json({
+    status: 'OK',
+    version: SOURCE_VERSION,
+  });
 });
 app.get('/api/v1/list/:reference', async (req, res) => {
   const { reference } = req.params;
