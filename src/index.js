@@ -36,11 +36,6 @@ app.use(
   })
 );
 
-app.get('/api/v1/create-reference', (req, res) => {
-  res.json({
-    reference: createNewReference(),
-  });
-});
 app.post('/api/v1/save', async (req, res) => {
   const { reference = createNewReference(), title, url } = req.body;
 
