@@ -38,7 +38,7 @@
     "uuid": "^8.2.0"
   },
   "devDependencies": {
-    "jest": "^26.1.0",
+    "jest": "^26.2.1",
     "mongodb-memory-server": "^6.6.3",
     "nodemon": "^2.0.4"
   }
